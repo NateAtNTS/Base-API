@@ -47,11 +47,9 @@ if ($devMode) {
     defined('YII_ENV') || define('YII_ENV', 'prod');
 }
 
-$srcPath = API_BASE_PATH . DIRECTORY_SEPARATOR . 'src';
-require API_VENDOR_PATH . DIRECTORY_SEPARATOR .'yiisoft' . DIRECTORY_SEPARATOR . 'yii2' . DIRECTORY_SEPARATOR . 'Yii.php';
-require $srcPath . DIRECTORY_SEPARATOR . 'BaseApi.php';
-
-BaseApi::setAlias('@baseapi', $srcPath);
+require VENDOR_PATH . DIRECTORY_SEPARATOR .'yiisoft' . DIRECTORY_SEPARATOR . 'yii2' . DIRECTORY_SEPARATOR . 'Yii.php';
+require API_SRC_PATH . 'BaseApi.php';
+BaseApi::setAlias('@baseapi', API_SRC_PATH);
 
 
 if ($appType == 'console') {
