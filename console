@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+/**
+ * API Console Bootstrap File
+ */
+
+// Set path constants
+define('API_BASE_PATH', __DIR__);
+define('API_VENDOR_PATH', API_BASE_PATH.'/vendor');
+
+// Load Composer's autoloader
+require_once API_VENDOR_PATH.'/autoload.php';
+
+
+// Load dotenv?
+if (class_exists('Dotenv\Dotenv') && file_exists('.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable('./');
+    $dotenv->load();
+} else {
+    echo PHP_EOL . PHP_EOL . "Either the .env file does not exist, or the Dotenv class file does not exist.  Exiting." . PHP_EOL . PHP_EOL;
+    exit();
+}
+$app = require __DIR__ . "/src/bootstrap/console.bootstrap.php";
+$exitCode = $app->run();
+exit($exitCode);
