@@ -48,15 +48,9 @@ if ($devMode) {
 }
 
 require VENDOR_PATH . DIRECTORY_SEPARATOR .'yiisoft' . DIRECTORY_SEPARATOR . 'yii2' . DIRECTORY_SEPARATOR . 'Yii.php';
-require API_SRC_PATH . 'BaseApi.php';
-BaseApi::setAlias('@baseapi', API_SRC_PATH);
-
-
-if ($appType == 'console') {
-    $config = require __DIR__ . '/../config/console.config.php';
-} else {
-    $config = require __DIR__ . '/../config/web.config.php';
-}
+require BASE_API_SRC_PATH . 'BaseApi.php';
+BaseApi::setAlias('@baseapi', BASE_API_SRC_PATH);
+$config = require CONFIG_FILE;
 
 $app = BaseApi::createObject($config);
 
