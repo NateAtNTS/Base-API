@@ -19,17 +19,17 @@ use yii\helpers\Console;
 class InstallController extends Controller
 {
 
-    private $isWorkingDbConnection;
+    public $isWorkingDbConnection;
 
-    private $username;
+    public $username;
 
-    private $firstName;
+    public $firstName;
 
-    private $lastName;
+    public $lastName;
 
-    private $emailAddress;
+    public $emailAddress;
 
-    private $password;
+    public $password;
 
 
     public $defaultAction = 'api';
@@ -90,7 +90,7 @@ class InstallController extends Controller
     /**
      * Returns whether the DB connection settings are valid
      */
-    private function getIsDbConnectionValid()
+    public function getIsDbConnectionValid()
     {
         try {
             BaseApi::$app->db->open();
@@ -101,7 +101,7 @@ class InstallController extends Controller
         }
     }
 
-    private function getDefaultUserInfo()
+    public function getDefaultUserInfo()
     {
         $this->username = $this->prompt('Username (lowercase letters, numbers and no spaces):', ['default' => 'admin', "validator" => [$this, 'validateUsername']]);
         $this->firstName = $this->prompt("First Name:", ['required' => true, "validator" => [$this, 'validateName']]);
@@ -173,7 +173,7 @@ class InstallController extends Controller
      *
      * @return string
      */
-    private function _passwordPrompt(): string
+    public function _passwordPrompt(): string
     {
         top:
 
