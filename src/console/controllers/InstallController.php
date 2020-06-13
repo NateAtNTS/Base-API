@@ -36,10 +36,11 @@ class InstallController extends Controller
 
     /**
      * Installs The Base API
+     * @param bool $bUseBaseInstallMigration
      *
      * @return int Exit code
      */
-    public function actionApi()
+    public function actionApi($bUseBaseInstallMigration=true)
     {
         // check to see if the database connection is working.
         $this->getIsDbConnectionValid();
@@ -53,23 +54,27 @@ class InstallController extends Controller
         $this->getDefaultUserInfo();
         BaseApi::_console("Installing...");
 
-        $installMigration = new Install([
-            'username' => $this->username,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'password' => $this->password,
-            'admin' => 'S',
-            'email' => $this->emailAddress,
-        ]);
-        $result = $installMigration->safeUp();
+        /**
+         * Most projects will not use the base install migration
+         */
+        if ($bUseBaseInstallMigration) {
+            $installMigration = new Install([
+                'username' => $this->username,
+                'firstName' => $this->firstName,
+                'lastName' => $this->lastName,
+                'password' => $this->password,
+                'admin' => 'S',
+                'email' => $this->emailAddress,
+            ]);
+            $result = $installMigration->safeUp();
 
-        if ($result) {
-            BaseApi::_console("Installation Done! ");
-        } else {
-            BaseApi::_console("Installation Failed!");
+            if ($result) {
+                BaseApi::_console("Installation Done! ");
+            } else {
+                BaseApi::_console("Installation Failed!");
+            }
+            return ExitCode::OK;
         }
-
-        return ExitCode::OK;
     }
 
     /**
