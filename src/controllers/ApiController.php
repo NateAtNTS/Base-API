@@ -40,7 +40,7 @@ class ApiController extends Controller
         $model = new LoginForm();
 
         // The $model->load method second parameter is blank because we are not passing in a form name
-        if ($model->load(BaseaApi::$app->request->post(),'') && $model->login()) {
+        if ($model->load(BaseApi::$app->request->post(),'') && $model->login()) {
 
             $user = BaseApi::$app->user->identity;
 
