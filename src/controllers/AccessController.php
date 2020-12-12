@@ -8,15 +8,13 @@ use baseapi\models\LoginForm;
 use yii\filters\ContentNegotiator;
 use yii\web\Response;
 
-class ApiController extends Controller
+class AccessController extends Controller
 {
-
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
-
         $behaviors = parent::behaviors();
         $behaviors['contentNegotiator'] = [
             'class' => ContentNegotiator::className(),
