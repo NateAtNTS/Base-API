@@ -22,9 +22,12 @@ class BaseController extends \yii\web\Controller
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
         ];
-        $behaviors['authenticator'] = [
-            'class' => HttpBearerAuth::className(),
-        ];
+
+        if (getenv("ENVIRONMENT") != "dev") {
+            $behaviors['authenticator'] = [
+                'class' => HttpBearerAuth::className(),
+            ];
+        }
         return $behaviors;
     }
 } // class
