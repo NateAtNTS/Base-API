@@ -23,7 +23,7 @@ class BaseController extends \yii\web\Controller
             'class' => \yii\filters\Cors::className(),
         ];
 
-        if (getenv("ENVIRONMENT") != "dev") {
+        if (getenv("BEARER_AUTH") == "ON") {
             $behaviors['authenticator'] = [
                 'class' => HttpBearerAuth::className(),
             ];
