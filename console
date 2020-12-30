@@ -5,12 +5,12 @@
  */
 
 // Set path constants
-define('API_BASE_PATH', __DIR__);
-define('API_VENDOR_PATH', API_BASE_PATH.'/vendor');
+define('BASE_API_SRC_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR);
+define('VENDOR_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'vendor');
+define('CONFIG_FILE', BASE_API_SRC_PATH .  "/config" . DIRECTORY_SEPARATOR . "console.config.php");
 
 // Load Composer's autoloader
-require_once API_VENDOR_PATH.'/autoload.php';
-
+require_once VENDOR_PATH.'/autoload.php';
 
 // Load dotenv?
 if (class_exists('Dotenv\Dotenv') && file_exists('.env')) {
